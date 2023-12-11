@@ -1,0 +1,20 @@
+services:
+  nginx:
+    image: nginx:1.25.3-alpine-slim
+    volumes:
+      # - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      # - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./stub_status.conf:/etc/nginx/conf.d/stub_status.conf:ro
+    ports:
+      - "127.0.0.1:8081:80"
+      - "127.0.0.1:8080:8080"
+
+  nginx-prometheus-exporter:
+      image: nginx/nginx-prometheus-exporter:1.0.0
+      volumes:
+        - ./web-config.yml:/etc/nginx/web-config.yml:ro
+      command:
+        - --nginx.scrape-uri=http://nginx:8080/basic_status
+        - --web.config.file=/etc/nginx/web-config.yml
+      ports:
+        - "9113:9113"
