@@ -11,6 +11,7 @@ To start the exporter we use the `docker compose` command.
 - To export NGINX metrics, run:
 
     ```
+    cd docker
     docker compose up -d
     ```
 
