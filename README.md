@@ -1,3 +1,5 @@
+
+
 # NGINX Prometheus Exporter
 
 NGINX Prometheus exporter makes it possible to monitor NGINX or NGINX Plus using Prometheus. [repo](https://github.com/nginxinc/nginx-prometheus-exporter)
@@ -20,6 +22,8 @@ To start the exporter we use the `docker compose` command.
 ```
 curl -s 127.0.0.1:8080/basic_status
 
-curl http://localhost:9113/metrics
+# Basic authentication is enabled via web-config.yml.
+# The unauthenticated request will return 401 Unauthorized.
+# curl http://localhost:9113/metrics
 curl -u admin:password http://localhost:9113/metrics
 ```
